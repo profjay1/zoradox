@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets (for later phases)
+.env
+*.env
+
+# Phase 2: Spring Boot
+backend/target/
+backend/build/
+backend/.gradle/

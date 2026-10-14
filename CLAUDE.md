@@ -1,0 +1,163 @@
+# ZORADOX — Landing Page
+
+ZORADOX is an IT company that designs and builds websites and web applications for
+startups, medium-sized businesses and large enterprises. This repo holds the company's
+public landing page. Its job: look professional, load instantly, and turn visitors
+into consultation requests.
+
+## Current phase: 1 — Static landing page
+
+- **Stack: HTML5, modern CSS, vanilla JavaScript. Nothing else.**
+- No frameworks, no build step, no npm packages, no CSS frameworks (no Tailwind, no Bootstrap).
+- Files are served as-is by Nginx on a VPS.
+- Do not introduce any tool that requires compiling or bundling. If something seems to
+  need one, stop and ask first.
+
+## Roadmap (keep code ready for this)
+
+1. **Now:** static landing page (this repo, `site/`).
+2. **Next:** Spring Boot API in `backend/` — contact form will POST JSON to `/api/contact`
+   (leads saved to PostgreSQL, email notification). Nginx proxies `/api` to Spring.
+3. **Later:** migrate `site/` to Angular 22+ with prerendering when the site needs many
+   pages (blog, case studies). Each `<section>` becomes an Angular component, and the CSS
+   custom properties become the design system.
+4. **Eventually:** admin area, CMS-style content, full engineering website.
+
+Write everything so step 3 is a copy-and-split job, not a rewrite.
+
+## Project structure
+
+```
+zoradox/
+├── site/
+│   ├── index.html
+│   ├── 404.html
+│   ├── robots.txt
+│   ├── sitemap.xml
+│   ├── css/
+│   │   └── styles.css        # tokens → base → layout → one block per section
+│   ├── js/
+│   │   ├── main.js           # entry point, type="module"
+│   │   └── modules/          # nav.js, reveal.js, contact-form.js ...
+│   └── assets/
+│       ├── fonts/            # self-hosted woff2
+│       ├── img/              # WebP/AVIF + fallbacks, explicit width/height
+│       └── icons/            # inline-able SVGs, favicon set
+├── backend/                  # Phase 2 (empty for now)
+├── infra/                    # nginx.conf, deploy script
+└── CLAUDE.md
+```
+
+## Brand & design direction: "Blueprint"
+
+A precise, engineering aesthetic: built by engineers, for businesses.
+
+- Dark base with a subtle blueprint grid pattern (CSS background, not an image).
+- Monospace section labels, e.g. `// 01 — SERVICES`.
+- One electric accent color, used sparingly for CTAs, highlights and focus rings.
+- Generous whitespace, sharp alignment, thin 1px borders, restrained motion.
+
+### Design tokens (define on `:root`, never hard-code values in sections)
+
+```css
+--color-bg:        #0A0E1A;
+--color-surface:   #111827;
+--color-border:    #1F2937;
+--color-text:      #E5E7EB;
+--color-muted:     #9CA3AF;
+--color-accent:    #22D3EE;   /* electric cyan */
+--color-accent-2:  #6366F1;   /* indigo, for gradients only */
+
+--font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+--font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+```
+
+Also define tokens for: spacing scale, radius, max content width, fluid type scale
+using `clamp()`, transition durations. Fonts are self-hosted woff2 with
+`font-display: swap`; preload only the main text weight.
+
+## Page sections (in order)
+
+Each is a `<section class="[name]" id="[name]">` with its own CSS block:
+
+1. `header` — logo/wordmark, nav anchors, "Book a consultation" button, mobile menu
+2. `hero` — headline, subline naming the three audiences, two CTAs
+3. `audiences` — Startups / Medium businesses / Enterprises (three cards)
+4. `services` — websites, web apps, e-commerce, UI/UX, APIs & integrations, maintenance
+5. `process` — Discover → Design → Build → Launch → Support (timeline)
+6. `stack` — technologies we work with
+7. `work` — case studies / concept projects
+8. `engagement` — ways to work with us (fixed scope, dedicated team, retainer)
+9. `faq` — use native `<details>`/`<summary>`, no JS needed
+10. `contact` — final CTA, contact form, booking link
+11. `footer` — contact details, socials, privacy link, copyright
+
+## Conventions
+
+### HTML
+- Semantic elements: `header`, `nav`, `main`, `section`, `article`, `footer`.
+- One `<h1>` (in the hero); logical heading order after that.
+- Every image: `alt`, `width`, `height`, `loading="lazy"` (except above-the-fold),
+  `decoding="async"`. Use `<picture>` for WebP/AVIF.
+
+### CSS
+- Single `styles.css`, organized in this order: tokens → reset/base → layout utilities
+  → one clearly commented block per section (`/* ===== HERO ===== */`).
+- Class naming: BEM-style scoped to the section (`.hero__title`, `.services__card`).
+  This maps directly to future Angular components.
+- Mobile-first; use Grid/Flexbox; fluid sizing with `clamp()`.
+- Respect `prefers-reduced-motion`: disable non-essential animation.
+- Visible `:focus-visible` styles on every interactive element.
+
+### JavaScript
+- ES modules, loaded with `<script type="module" src="js/main.js">`.
+- One small module per feature; `main.js` only imports and initializes.
+- Progressive enhancement: the page must be fully readable and the form usable
+  without JS (the form falls back to a normal POST).
+- No libraries. Use `IntersectionObserver` for scroll reveals, `fetch` for the form.
+
+### Contact form
+- Phase 1: submits to Web3Forms. The access key is a placeholder
+  `WEB3FORMS_ACCESS_KEY`; never invent a real one.
+- Keep the submit logic in `js/modules/contact-form.js` behind one function
+  (`submitLead(data)`) so Phase 2 only swaps the endpoint to `/api/contact`.
+- Fields: name, email, company (optional), project type (select), budget range
+  (select, optional), message. Include a honeypot field for spam.
+- Clear success and error states, announced to screen readers (`aria-live`).
+
+## Quality targets
+
+- Lighthouse 95+ in Performance, Accessibility, Best Practices and SEO on mobile.
+- Total page weight under ~500 KB on first load (excluding lazy images).
+- No layout shift: reserve space for images and fonts.
+- WCAG AA color contrast.
+
+## SEO checklist
+
+- Unique `<title>` and meta description.
+- Open Graph and Twitter card tags with a 1200×630 OG image.
+- `schema.org` `Organization` (and `ProfessionalService`) JSON-LD.
+- Canonical URL, `robots.txt`, `sitemap.xml`, favicon set, `theme-color`.
+
+## Content rules
+
+- **Never invent testimonials, client names, client logos, statistics or awards.**
+- Concept or sample projects must be clearly labeled as such.
+- When real content is missing, use obvious placeholders like `[CLIENT PROJECT NAME]`
+  and list them at the end of your reply so they can be filled in.
+- Tone: confident, clear, technical but not jargon-heavy. Short sentences.
+
+## How to work with me
+
+- I am actively learning. Briefly explain non-obvious decisions (why a CSS technique,
+  why an attribute, why a JS pattern) in chat, not as long comments in the code.
+- Build one section at a time and stop for review before moving on.
+- Prefer the simplest solution that meets the quality targets.
+- After each change, tell me how to preview it (open `site/index.html` or run
+  `python3 -m http.server` inside `site/`).
+
+## Deployment (for reference)
+
+- Hostinger VPS, Ubuntu, Nginx serving `site/` as the web root, SSL via Certbot.
+- Gzip/Brotli on; long cache headers for `css/`, `js/`, `assets/`; short for HTML.
+- Deploy by syncing `site/` to the server (`rsync`), later via GitHub Actions.
