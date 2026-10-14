@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.zoradox.example/sitemap.xml
+Sitemap: https://zoradox.com/sitemap.xml

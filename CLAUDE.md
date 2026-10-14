@@ -68,7 +68,7 @@ A precise, engineering aesthetic: built by engineers, for businesses.
 --color-accent:    #22D3EE;   /* electric cyan */
 --color-accent-2:  #6366F1;   /* indigo, for gradients only */
 
---font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+--font-sans: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
 --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 ```
 
