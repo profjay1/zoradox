@@ -12,3 +12,6 @@ Thumbs.db
 backend/target/
 backend/build/
 backend/.gradle/
+
+# Python venv for font tooling
+design/.venv/
