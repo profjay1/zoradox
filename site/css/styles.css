@@ -367,6 +367,41 @@ pre {
   color: var(--color-accent);
 }
 
+/* Section header: label + h2 + intro, used at the top of each section */
+.section-header {
+  max-width: 42rem;
+  margin-bottom: var(--space-7);
+}
+
+.section-header__title {
+  margin-bottom: var(--space-4);
+}
+
+.section-header__intro {
+  font-size: var(--step-1);
+  color: var(--color-muted);
+}
+
+/* ===== SCROLL REVEAL =====
+   Hidden state applies only once reveal.js has run (.reveal-ready)
+   and only when the user hasn't asked for reduced motion. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity var(--duration-slow) var(--ease-out),
+      transform var(--duration-slow) var(--ease-out);
+    transition-delay: calc(var(--reveal-index, 0) * 80ms);
+  }
+
+  .reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ===== REDUCED MOTION ===== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -615,7 +650,7 @@ pre {
 .hero {
   position: relative;
   isolation: isolate;
-  padding-block: clamp(var(--space-8), 14vw, var(--space-10)) var(--section-space);
+  padding-block: clamp(var(--space-8), 14vw, var(--space-10)) var(--space-6);
 }
 
 /* Soft cyan/indigo glow behind the headline */
@@ -659,4 +694,94 @@ pre {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
+}
+
+/* ===== AUDIENCES ===== */
+
+.audiences__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-5);
+}
+
+/* Subgrid: each card spans 4 rows (index, title, text, list) and shares
+   them with its neighbours, so the same parts line up across cards. */
+.audiences__card {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  padding: var(--space-6);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.audiences__index {
+  margin-bottom: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-mono);
+  color: var(--color-accent);
+}
+
+.audiences__title {
+  margin-bottom: var(--space-3);
+}
+
+.audiences__text {
+  margin-bottom: var(--space-5);
+  color: var(--color-muted);
+}
+
+.audiences__list {
+  padding-top: var(--space-5);
+  border-top: var(--border);
+  font-size: var(--step--1);
+}
+
+.audiences__list li {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.audiences__list li + li {
+  margin-top: var(--space-2);
+}
+
+.audiences__list li::before {
+  content: "→";
+  color: var(--color-accent);
+}
+
+/* ===== SERVICES ===== */
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-5);
+}
+
+.services__card {
+  padding: var(--space-6);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.services__icon {
+  box-sizing: content-box;
+  margin-bottom: var(--space-5);
+  padding: var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+}
+
+.services__title {
+  margin-bottom: var(--space-3);
+}
+
+.services__text {
+  color: var(--color-muted);
 }
