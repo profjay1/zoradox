@@ -11,6 +11,9 @@
   <meta name="theme-color" content="#0A0E1A">
   <meta name="color-scheme" content="dark">
 
+  <!-- Flag JS support before first paint, so JS-only styles apply without a flash -->
+  <script>document.documentElement.classList.add("js");</script>
+
   <!-- Fonts: preload only the main text face -->
   <link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -88,15 +91,61 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="header__logo" href="/">
+        <svg class="header__logo-mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect x="0.5" y="0.5" width="31" height="31" rx="6"/>
+          <path d="M10 10h12L10 22h12" fill="none" stroke-width="2.5" stroke-linecap="square"/>
+        </svg>
+        ZORADOX
+      </a>
+
+      <button class="header__toggle" type="button" aria-expanded="false" aria-controls="header-nav">
+        <span class="header__toggle-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+
+      <nav class="header__nav" id="header-nav" aria-label="Main">
+        <ul class="header__list" role="list">
+          <li><a class="header__link" href="#services">Services</a></li>
+          <li><a class="header__link" href="#process">Process</a></li>
+          <li><a class="header__link" href="#work">Work</a></li>
+          <li><a class="header__link" href="#pricing">Pricing</a></li>
+          <li><a class="header__link" href="#faq">FAQ</a></li>
+        </ul>
+        <a class="btn btn--primary header__cta" href="#contact">Book a consultation</a>
+      </nav>
+    </div>
+  </header>
 
   <main id="main" tabindex="-1">
     <!-- ===== HERO ===== -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero__content">
+          <p class="section-label"><span aria-hidden="true">// </span>Web design &amp; development</p>
+          <h1 class="hero__title" id="hero-title">
+            We <span class="hero__highlight">engineer</span> websites and web apps that grow your business.
+          </h1>
+          <p class="hero__subline">
+            From a startup’s first launch to an enterprise platform at scale&nbsp;— we design,
+            build and support software that performs.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#contact">Book a consultation</a>
+            <a class="btn btn--ghost" href="#services">Explore our services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== AUDIENCES ===== -->
     <!-- ===== SERVICES ===== -->
     <!-- ===== PROCESS ===== -->
     <!-- ===== STACK ===== -->
     <!-- ===== WORK ===== -->
-    <!-- ===== ENGAGEMENT ===== -->
+    <!-- ===== PRICING ===== -->
     <!-- ===== FAQ ===== -->
     <!-- ===== CONTACT ===== -->
   </main>

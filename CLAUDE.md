@@ -87,7 +87,7 @@ Each is a `<section class="[name]" id="[name]">` with its own CSS block:
 5. `process` — Discover → Design → Build → Launch → Support (timeline)
 6. `stack` — technologies we work with
 7. `work` — case studies / concept projects
-8. `engagement` — ways to work with us (fixed scope, dedicated team, retainer)
+8. `pricing` — ways to work with us (fixed scope, dedicated team, retainer)
 9. `faq` — use native `<details>`/`<summary>`, no JS needed
 10. `contact` — final CTA, contact form, booking link
 11. `footer` — contact details, socials, privacy link, copyright
@@ -146,6 +146,9 @@ Each is a `<section class="[name]" id="[name]">` with its own CSS block:
 - When real content is missing, use obvious placeholders like `[CLIENT PROJECT NAME]`
   and list them at the end of your reply so they can be filled in.
 - Tone: confident, clear, technical but not jargon-heavy. Short sentences.
+- Unconfirmed promises — code ownership, fixed-price quotes, weekly progress demos,
+  post-launch support — may go in the FAQ later, but only once confirmed. Don't use
+  them elsewhere until then.
 
 ## How to work with me
 
