@@ -80,14 +80,14 @@ using `clamp()`, transition durations. Fonts are self-hosted woff2 with
 
 Each is a `<section class="[name]" id="[name]">` with its own CSS block:
 
-1. `header` — logo/wordmark, nav anchors, "Book a consultation" button, mobile menu
+1. `header` — logo/wordmark, nav anchors, "Book a free call" button, mobile menu
 2. `hero` — headline, subline naming the three audiences, two CTAs
 3. `audiences` — Startups / Medium businesses / Enterprises (three cards)
 4. `services` — websites, web apps, e-commerce, UI/UX, APIs & integrations, maintenance
 5. `process` — Discover → Design → Build → Launch → Support (timeline)
 6. `stack` — technologies we work with
 7. `work` — case studies / concept projects
-8. `pricing` — ways to work with us (fixed scope, dedicated team, retainer)
+8. `pricing` — ways to work with us (fixed scope, dedicated team, ongoing support)
 9. `faq` — use native `<details>`/`<summary>`, no JS needed
 10. `contact` — final CTA, contact form, booking link
 11. `footer` — contact details, socials, privacy link, copyright
@@ -149,10 +149,12 @@ Each is a `<section class="[name]" id="[name]">` with its own CSS block:
 - Use typographic apostrophes and quotes (’ “ ”) in all visible copy; straight ones
   (' ") in code and attributes.
 - Never mention code ownership.
-- Pricing section: no prices or numbers. Show the ways of working, each with a
-  "Get a quote" button.
+- Pricing section: no prices or price-related numbers. Show the ways of working,
+  each with a "Get a quote" button.
 - Don't promise fixed prices in general. The Fixed scope model in the pricing section
   may say scope and price are agreed before work starts, for that model only.
+- The first intro call (30 minutes) is free. Never describe deeper consulting,
+  discovery or audits as free.
 - Confirmed promises, may be used anywhere:
   - Documentation and handover.
   - Development in small, tested increments.

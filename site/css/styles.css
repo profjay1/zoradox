@@ -1034,3 +1034,84 @@ pre {
 .work__cta-link {
   font-weight: 600;
 }
+
+/* ===== PRICING ===== */
+
+.pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-5);
+}
+
+/* Subgrid: title, summary, details and button line up across cards,
+   so the three buttons sit on one line */
+.pricing__card {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  padding: var(--space-6);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.pricing__title {
+  margin-bottom: var(--space-2);
+}
+
+.pricing__summary {
+  margin-bottom: var(--space-5);
+  color: var(--color-muted);
+}
+
+.pricing__details {
+  padding-top: var(--space-5);
+  border-top: var(--border);
+}
+
+.pricing__details dt {
+  margin-bottom: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.pricing__details dd {
+  margin: 0 0 var(--space-4);
+  color: var(--color-muted);
+}
+
+.pricing__list li {
+  display: flex;
+  gap: var(--space-3);
+  color: var(--color-text);
+}
+
+.pricing__list li + li {
+  margin-top: var(--space-1);
+}
+
+.pricing__list li::before {
+  content: "→";
+  color: var(--color-accent);
+}
+
+.pricing__cta {
+  align-self: end;
+  margin-top: var(--space-4);
+}
+
+.pricing__note {
+  max-width: 48rem;
+  margin-top: var(--space-7);
+  font-size: var(--step-1);
+  color: var(--color-muted);
+}
+
+.pricing__note-link {
+  font-weight: 600;
+  white-space: nowrap;
+}
