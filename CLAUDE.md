@@ -146,9 +146,19 @@ Each is a `<section class="[name]" id="[name]">` with its own CSS block:
 - When real content is missing, use obvious placeholders like `[CLIENT PROJECT NAME]`
   and list them at the end of your reply so they can be filled in.
 - Tone: confident, clear, technical but not jargon-heavy. Short sentences.
-- Unconfirmed promises — code ownership, fixed-price quotes, weekly progress demos,
-  post-launch support — may go in the FAQ later, but only once confirmed. Don't use
-  them elsewhere until then.
+- Use typographic apostrophes and quotes (’ “ ”) in all visible copy; straight ones
+  (' ") in code and attributes.
+- Never mention code ownership.
+- Pricing section: no prices or numbers. Show the ways of working, each with a
+  "Get a quote" button.
+- Don't promise fixed prices in general. The Fixed scope model in the pricing section
+  may say scope and price are agreed before work starts, for that model only.
+- Confirmed promises, may be used anywhere:
+  - Documentation and handover.
+  - Development in small, tested increments.
+  - Post-launch support, in general wording only. No free period or duration.
+  - Regular progress demos during development, with no fixed schedule
+    (e.g. "regular check-ins where you see your project take shape").
 
 ## How to work with me
 
