@@ -785,3 +785,123 @@ pre {
 .services__text {
   color: var(--color-muted);
 }
+
+/* ===== PROCESS ===== */
+
+/* Timeline: each step draws its own dot (::before) and the line
+   segment to the next step (::after). Vertical on mobile. */
+.process__steps {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.process__step {
+  position: relative;
+  padding-left: var(--space-7);
+}
+
+.process__step::before {
+  content: "";
+  position: absolute;
+  top: 0.25rem;
+  left: 0;
+  z-index: 1;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  background-color: var(--color-bg);
+}
+
+.process__step::after {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  bottom: calc(-1 * var(--space-6) - 0.25rem);
+  left: calc(0.375rem - 0.5px);
+  width: 1px;
+  background-color: var(--color-border);
+}
+
+.process__step:last-child::after {
+  display: none;
+}
+
+.process__index {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-mono);
+  color: var(--color-accent);
+}
+
+.process__title {
+  margin-bottom: var(--space-2);
+}
+
+.process__text {
+  color: var(--color-muted);
+}
+
+@media (width >= 64em) {
+  .process__steps {
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-5);
+  }
+
+  .process__step {
+    padding-top: var(--space-6);
+    padding-left: 0;
+  }
+
+  .process__step::before {
+    top: 0;
+  }
+
+  .process__step::after {
+    top: calc(0.375rem - 0.5px);
+    right: calc(-1 * var(--space-5));
+    bottom: auto;
+    left: 0.75rem;
+    width: auto;
+    height: 1px;
+  }
+}
+
+/* ===== STACK ===== */
+
+.stack__groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--space-6) var(--space-5);
+}
+
+.stack__group {
+  padding-top: var(--space-4);
+  border-top: var(--border);
+}
+
+.stack__category {
+  margin-bottom: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 400;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.stack__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.stack__item {
+  padding: var(--space-1) var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}

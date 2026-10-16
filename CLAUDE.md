@@ -158,6 +158,8 @@ Each is a `<section class="[name]" id="[name]">` with its own CSS block:
 - Prefer the simplest solution that meets the quality targets.
 - After each change, tell me how to preview it (open `site/index.html` or run
   `python3 -m http.server` inside `site/`).
+- I use Firefox on Fedora Linux; give browser instructions (DevTools, shortcuts,
+  settings) for Firefox.
 
 ## Deployment (for reference)
 
