@@ -1115,3 +1115,106 @@ pre {
   font-weight: 600;
   white-space: nowrap;
 }
+
+/* ===== FAQ ===== */
+
+.faq__layout {
+  display: grid;
+  gap: var(--space-6);
+}
+
+/* The grid gap spaces header and list, so drop the shared header margin */
+.faq__header {
+  margin-bottom: 0;
+}
+
+.faq__list {
+  border-top: var(--border);
+}
+
+.faq__item {
+  border-bottom: var(--border);
+}
+
+/* Remove the browser's default triangle; we draw our own +/− icon */
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  min-height: 2.75rem;
+  padding-block: var(--space-5);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  list-style: none;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq__question:hover {
+  color: var(--color-accent);
+}
+
+/* Keep the focus ring inside the row, so it doesn't overlap the open answer */
+.faq__question:focus-visible {
+  outline-offset: 0;
+}
+
+/* Plus icon: two gradient bars. When open, the vertical bar shrinks
+   to zero height, leaving a minus. background-size is animatable. */
+.faq__question::after {
+  content: "";
+  flex-shrink: 0;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-image:
+    linear-gradient(var(--color-accent), var(--color-accent)),
+    linear-gradient(var(--color-accent), var(--color-accent));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 1.5px, 1.5px 100%;
+  transition: background-size var(--duration-base) var(--ease-out);
+}
+
+.faq__item[open] > .faq__question::after {
+  background-size: 100% 1.5px, 1.5px 0%;
+}
+
+.faq__answer {
+  max-width: 42rem;
+  padding-bottom: var(--space-5);
+  color: var(--color-muted);
+}
+
+.faq__points li {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.faq__points li + li {
+  margin-top: var(--space-1);
+}
+
+.faq__points li::before {
+  content: "→";
+  color: var(--color-accent);
+}
+
+@media (width >= 64em) {
+  .faq__layout {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  /* Header stays in view while the questions scroll past */
+  .faq__header {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-6));
+  }
+}
