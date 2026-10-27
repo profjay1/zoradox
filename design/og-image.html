@@ -1,0 +1,101 @@
+<!doctype html>
+<!-- Template for site/assets/img/og-image.png (1200×630).
+     Rendered by design/generate-images.sh; uses the site's own tokens and fonts. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OG image template</title>
+  <link rel="preload" href="/site/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/site/assets/fonts/jetbrains-mono-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/site/css/styles.css">
+  <style>
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+    }
+
+    .og {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding: 72px 80px;
+      background:
+        radial-gradient(40rem 24rem at 10% 0%,
+          color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 70%),
+        radial-gradient(36rem 24rem at 95% 100%,
+          color-mix(in srgb, var(--color-accent-2) 16%, transparent), transparent 70%);
+    }
+
+    /* Thin inset frame with accent corner ticks */
+    .og::before {
+      content: "";
+      position: absolute;
+      inset: 32px;
+      border: var(--border);
+      border-radius: var(--radius-md);
+      pointer-events: none;
+    }
+
+    .og__corner {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 0 solid var(--color-accent);
+    }
+    .og__corner--tl { top: 32px;    left: 32px;  border-top-width: 2px;    border-left-width: 2px;  border-top-left-radius: var(--radius-md); }
+    .og__corner--tr { top: 32px;    right: 32px; border-top-width: 2px;    border-right-width: 2px; border-top-right-radius: var(--radius-md); }
+    .og__corner--bl { bottom: 32px; left: 32px;  border-bottom-width: 2px; border-left-width: 2px;  border-bottom-left-radius: var(--radius-md); }
+    .og__corner--br { bottom: 32px; right: 32px; border-bottom-width: 2px; border-right-width: 2px; border-bottom-right-radius: var(--radius-md); }
+
+    .og__brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: var(--tracking-mono);
+    }
+
+    .og__label {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .og__title {
+      max-width: 19ch;
+      font-size: 66px;
+    }
+
+    .og__url {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      letter-spacing: var(--tracking-mono);
+      color: var(--color-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="og">
+    <span class="og__corner og__corner--tl"></span>
+    <span class="og__corner og__corner--tr"></span>
+    <span class="og__corner og__corner--bl"></span>
+    <span class="og__corner og__corner--br"></span>
+
+    <div class="og__brand">
+      <img src="/site/assets/icons/favicon.svg" width="48" height="48" alt="">
+      ZORADOX
+    </div>
+
+    <div>
+      <p class="section-label og__label">// Web design &amp; development</p>
+      <h1 class="og__title">We <span class="hero__highlight">engineer</span> websites and web apps that grow your business.</h1>
+    </div>
+
+    <p class="og__url">zoradox.com</p>
+  </div>
+</body>
+</html>

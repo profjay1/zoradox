@@ -45,6 +45,10 @@ zoradox/
 │       ├── fonts/            # self-hosted woff2
 │       ├── img/              # WebP/AVIF + fallbacks, explicit width/height
 │       └── icons/            # inline-able SVGs, favicon set
+├── design/                   # source assets + tooling, not deployed
+│   ├── subset-fonts.sh       # fonts-src/ → site/assets/fonts/
+│   ├── generate-images.sh    # favicon.svg + og-image.html → favicon set, logo, OG image
+│   └── og-image.html         # 1200×630 OG template (uses site tokens and fonts)
 ├── backend/                  # Phase 2 (empty for now)
 ├── infra/                    # nginx.conf, deploy script
 └── CLAUDE.md
