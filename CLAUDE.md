@@ -32,6 +32,8 @@ zoradox/
 ├── site/
 │   ├── index.html
 │   ├── 404.html
+│   ├── thank-you.html        # no-JS form redirect target (noindex, not in sitemap)
+│   ├── privacy.html
 │   ├── robots.txt
 │   ├── sitemap.xml
 │   ├── css/
@@ -76,6 +78,20 @@ Also define tokens for: spacing scale, radius, max content width, fluid type sca
 using `clamp()`, transition durations. Fonts are self-hosted woff2 with
 `font-display: swap`; preload only the main text weight.
 
+## Business details (confirmed)
+
+- Public email: `contact@zoradox.com`
+- Location wording: "Based in Canada, working with clients worldwide."
+  No street address, city, province or phone number anywhere (copy, footer, JSON-LD).
+- Free intro call booking link: `https://cal.com/zoradox/intro-call`
+  (plain link, opens in a new tab with `rel="noopener"`; no Cal.com embed script).
+- Web3Forms access key (public, safe in client code):
+  `f189591f-554b-4ec9-977c-fb60d2ab607e`
+- Services that process visitor data: Web3Forms (form), Cal.com (booking),
+  Zoho Mail (email).
+- Social links: none yet. Don't add a social links area, `sameAs` or
+  `twitter:site` until they exist; they'll be added later.
+
 ## Page sections (in order)
 
 Each is a `<section class="[name]" id="[name]">` with its own CSS block:
@@ -90,7 +106,8 @@ Each is a `<section class="[name]" id="[name]">` with its own CSS block:
 8. `pricing` — ways to work with us (fixed scope, dedicated team, ongoing support)
 9. `faq` — use native `<details>`/`<summary>`, no JS needed
 10. `contact` — final CTA, contact form, booking link
-11. `footer` — contact details, socials, privacy link, copyright
+11. `footer` — wordmark, tagline, nav links, email, location line, privacy link,
+    copyright (no socials yet)
 
 ## Conventions
 
@@ -117,12 +134,17 @@ Each is a `<section class="[name]" id="[name]">` with its own CSS block:
 - No libraries. Use `IntersectionObserver` for scroll reveals, `fetch` for the form.
 
 ### Contact form
-- Phase 1: submits to Web3Forms. The access key is a placeholder
-  `WEB3FORMS_ACCESS_KEY`; never invent a real one.
+- Phase 1: submits to Web3Forms with the access key under "Business details".
+  The email subject and from name are set in the Web3Forms dashboard, not as fields.
 - Keep the submit logic in `js/modules/contact-form.js` behind one function
   (`submitLead(data)`) so Phase 2 only swaps the endpoint to `/api/contact`.
-- Fields: name, email, company (optional), project type (select), budget range
-  (select, optional), message. Include a honeypot field for spam.
+- Fields: `name` (subject uses `{field:name}`), `email` (Web3Forms uses it as
+  reply-to), `company` (optional), project type (required select), message.
+  No budget field. Honeypot: Web3Forms' `botcheck` checkbox.
+- Without JS: normal POST, with Web3Forms' hidden `redirect` field pointing to
+  `https://zoradox.com/thank-you.html`.
+- Local previews (localhost / file) mock the request; never send real test
+  submissions. `?mock=error` tests the error state, `?live` sends for real.
 - Clear success and error states, announced to screen readers (`aria-live`).
 
 ## Quality targets

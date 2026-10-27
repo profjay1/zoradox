@@ -38,7 +38,6 @@
 
   <!-- Twitter / X card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@[TWITTER_HANDLE]">
   <meta name="twitter:title" content="ZORADOX — Websites &amp; Web Applications">
   <meta name="twitter:description" content="We design and build fast, reliable websites and web applications for startups, medium-sized businesses and enterprises. Book a free intro call.">
   <meta name="twitter:image" content="https://zoradox.com/assets/img/og-image.png">
@@ -55,12 +54,7 @@
         "name": "ZORADOX",
         "url": "https://zoradox.com/",
         "logo": "https://zoradox.com/assets/icons/logo-512.png",
-        "email": "[CONTACT_EMAIL]",
-        "sameAs": [
-          "[LINKEDIN_URL]",
-          "[GITHUB_URL]",
-          "[TWITTER_URL]"
-        ]
+        "email": "contact@zoradox.com"
       },
       {
         "@type": "ProfessionalService",
@@ -69,14 +63,10 @@
         "url": "https://zoradox.com/",
         "image": "https://zoradox.com/assets/img/og-image.png",
         "description": "Design and development of websites and web applications for startups, medium-sized businesses and enterprises.",
-        "email": "[CONTACT_EMAIL]",
-        "telephone": "[PHONE_NUMBER]",
+        "email": "contact@zoradox.com",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "[STREET_ADDRESS]",
-          "addressLocality": "[CITY]",
-          "postalCode": "[POSTAL_CODE]",
-          "addressCountry": "[COUNTRY_CODE]"
+          "addressCountry": "CA"
         },
         "areaServed": [
           { "@type": "Country", "name": "Canada" },
@@ -763,8 +753,161 @@
 
 
     <!-- ===== CONTACT ===== -->
+    <section class="contact section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <header class="section-header" data-reveal>
+          <p class="section-label"><span aria-hidden="true">// </span>08 — Contact</p>
+          <h2 class="section-header__title" id="contact-title">Let’s talk about your project.</h2>
+          <p class="section-header__intro">
+            Tell us what you’re planning. Book a free intro call, or send a message and
+            we’ll reply by email.
+          </p>
+        </header>
+
+        <div class="contact__grid">
+          <article class="contact__card contact__card--call" aria-labelledby="contact-call-title" data-reveal>
+            <p class="contact__kicker" aria-hidden="true">Option 01</p>
+            <h3 class="contact__title" id="contact-call-title">Book a free intro call</h3>
+            <p class="contact__text">
+              A 30&#8209;minute call to talk through your goals. We’ll recommend the way of
+              working that fits your project. No obligation.
+            </p>
+            <a class="btn btn--primary contact__call-btn" href="https://cal.com/zoradox/intro-call" target="_blank" rel="noopener">
+              Choose a time<span class="visually-hidden"> for your free intro call (opens in a new tab)</span>
+            </a>
+
+            <dl class="contact__details">
+              <dt>Prefer email?</dt>
+              <dd><a href="mailto:contact@zoradox.com">contact@zoradox.com</a></dd>
+              <dt>Where we are</dt>
+              <dd>Based in Canada, working with clients worldwide.</dd>
+            </dl>
+          </article>
+
+          <article class="contact__card" aria-labelledby="contact-form-title" data-reveal>
+            <p class="contact__kicker" aria-hidden="true">Option 02</p>
+            <h3 class="contact__title" id="contact-form-title">Send a message</h3>
+
+            <form class="contact__form" action="https://api.web3forms.com/submit" method="POST"
+                  data-success="Thanks, your message has been sent. We’ll reply to you by email."
+                  data-error="Sorry, your message couldn’t be sent. Please try again, or email us at contact@zoradox.com.">
+              <input type="hidden" name="access_key" value="f189591f-554b-4ec9-977c-fb60d2ab607e">
+              <input type="hidden" name="redirect" value="https://zoradox.com/thank-you.html">
+              <input type="checkbox" name="botcheck" class="contact__honeypot" style="display: none;" tabindex="-1" autocomplete="off">
+
+              <p class="contact__note">All fields are required unless marked optional.</p>
+
+              <div class="contact__fields">
+                <div class="contact__field">
+                  <label class="contact__label" for="contact-name">Name</label>
+                  <input class="contact__input" id="contact-name" name="name" type="text"
+                         autocomplete="name" maxlength="100" required
+                         aria-describedby="contact-name-error"
+                         data-error-required="Please enter your name.">
+                  <p class="contact__error" id="contact-name-error"></p>
+                </div>
+
+                <div class="contact__field">
+                  <label class="contact__label" for="contact-email">Email</label>
+                  <input class="contact__input" id="contact-email" name="email" type="email"
+                         autocomplete="email" maxlength="200" required
+                         aria-describedby="contact-email-error"
+                         data-error-required="Please enter your email address."
+                         data-error-type="Please enter a valid email address, like name@company.com.">
+                  <p class="contact__error" id="contact-email-error"></p>
+                </div>
+
+                <div class="contact__field">
+                  <label class="contact__label" for="contact-company">
+                    Company <span class="contact__optional">(optional)</span>
+                  </label>
+                  <input class="contact__input" id="contact-company" name="company" type="text"
+                         autocomplete="organization" maxlength="100">
+                </div>
+
+                <div class="contact__field">
+                  <label class="contact__label" for="contact-project">Project type</label>
+                  <div class="contact__select">
+                    <select class="contact__input" id="contact-project" name="project_type" required
+                            aria-describedby="contact-project-error"
+                            data-error-required="Please choose a project type.">
+                      <option value="">Select a project type</option>
+                      <option>Website</option>
+                      <option>Web application</option>
+                      <option>E-commerce</option>
+                      <option>UI/UX design</option>
+                      <option>APIs &amp; integrations</option>
+                      <option>Ongoing support</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <p class="contact__error" id="contact-project-error"></p>
+                </div>
+
+                <div class="contact__field contact__field--full">
+                  <label class="contact__label" for="contact-message">Message</label>
+                  <textarea class="contact__input contact__textarea" id="contact-message" name="message"
+                            rows="6" maxlength="5000" required
+                            aria-describedby="contact-message-error"
+                            data-error-required="Please tell us a little about your project."></textarea>
+                  <p class="contact__error" id="contact-message-error"></p>
+                </div>
+              </div>
+
+              <div class="contact__actions">
+                <button class="btn btn--primary contact__submit" type="submit" data-sending="Sending…">Send message</button>
+                <p class="contact__status" role="status"></p>
+              </div>
+
+              <p class="contact__privacy">
+                We only use your details to reply to you. See our <a href="privacy.html">privacy notice</a>.
+              </p>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="footer__logo" href="/">
+            <svg class="footer__logo-mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+              <rect x="0.5" y="0.5" width="31" height="31" rx="6"/>
+              <path d="M10 10h12L10 22h12" fill="none" stroke-width="2.5" stroke-linecap="square"/>
+            </svg>
+            ZORADOX
+          </a>
+          <p class="footer__tagline">Websites and web applications, engineered.</p>
+        </div>
+
+        <nav class="footer__nav" aria-label="Footer">
+          <h2 class="footer__heading">Explore</h2>
+          <ul class="footer__list" role="list">
+            <li><a class="footer__link" href="#services">Services</a></li>
+            <li><a class="footer__link" href="#process">Process</a></li>
+            <li><a class="footer__link" href="#work">Work</a></li>
+            <li><a class="footer__link" href="#pricing">Pricing</a></li>
+            <li><a class="footer__link" href="#faq">FAQ</a></li>
+            <li><a class="footer__link" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__contact">
+          <h2 class="footer__heading">Contact</h2>
+          <p><a class="footer__link" href="mailto:contact@zoradox.com">contact@zoradox.com</a></p>
+          <p class="footer__location">Based in Canada · Working with clients worldwide</p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 ZORADOX</p>
+        <a class="footer__link" href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
