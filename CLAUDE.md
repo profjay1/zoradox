@@ -9,7 +9,7 @@ into consultation requests.
 
 - **Stack: HTML5, modern CSS, vanilla JavaScript. Nothing else.**
 - No frameworks, no build step, no npm packages, no CSS frameworks (no Tailwind, no Bootstrap).
-- Files are served as-is by Nginx on a VPS.
+- Files are served as-is by Caddy on a DigitalOcean droplet.
 - Do not introduce any tool that requires compiling or bundling. If something seems to
   need one, stop and ask first.
 
@@ -17,7 +17,8 @@ into consultation requests.
 
 1. **Now:** static landing page (this repo, `site/`).
 2. **Next:** Spring Boot API in `backend/` — contact form will POST JSON to `/api/contact`
-   (leads saved to PostgreSQL, email notification). Nginx proxies `/api` to Spring.
+   (leads saved to PostgreSQL, email notification). Caddy proxies `/api` to Spring
+   (configured in portfolio-hub's Ansible role).
 3. **Later:** migrate `site/` to Angular 22+ with prerendering when the site needs many
    pages (blog, case studies). Each `<section>` becomes an Angular component, and the CSS
    custom properties become the design system.
@@ -50,7 +51,7 @@ zoradox/
 │   ├── generate-images.sh    # favicon.svg + og-image.html → favicon set, logo, OG image
 │   └── og-image.html         # 1200×630 OG template (uses site tokens and fonts)
 ├── backend/                  # Phase 2 (empty for now)
-├── infra/                    # nginx.conf, deploy script
+├── infra/                    # deploy.sh + README.md runbook (no server config here)
 └── CLAUDE.md
 ```
 
@@ -201,6 +202,25 @@ Each is a `<section class="[name]" id="[name]">` with its own CSS block:
 
 ## Deployment (for reference)
 
-- Hostinger VPS, Ubuntu, Nginx serving `site/` as the web root, SSL via Certbot.
-- Gzip/Brotli on; long cache headers for `css/`, `js/`, `assets/`; short for HTML.
-- Deploy by syncing `site/` to the server (`rsync`), later via GitHub Actions.
+- Static site served by Caddy on a DigitalOcean droplet, web root `/var/www/zoradox`.
+- The Caddy vhost (headers, caching, redirects, 404, TLS) is managed in the
+  portfolio-hub repo's Ansible role, the single source of truth for `/etc/caddy`.
+  **Never create or edit a Caddy file in this repo.**
+- Deploys are rsync-only: `infra/deploy.sh` (no sudo, no Caddy changes).
+  Runbook: `infra/README.md`. A GitHub Actions deploy, if added later, must run
+  the same rsync.
+- Never write the server IP anywhere; the host comes from `DEPLOY_HOST`
+  (user defaults to `deploy`).
+
+### Later: Content Security Policy (not added yet)
+
+The header belongs in portfolio-hub's Caddy vhost. When adding it:
+- Start with `Content-Security-Policy-Report-Only`; switch to enforcing once clean.
+- `script-src` needs a hash for the one inline script in `<head>`
+  (`document.documentElement.classList.add("js");`, on index, thank-you and privacy):
+  `'sha256-WZRJfWvsnNCPcxzZwvyhovnZGqhZaC+8gPGPRbx6wTk='`. Any change to that script
+  changes the hash. The JSON-LD block is data, not script, and needs nothing.
+- `form-action` and `connect-src` both need `https://api.web3forms.com`
+  (no-JS POST and fetch respectively).
+- No inline `style` attributes: the honeypot is hidden with the `hidden` attribute,
+  so `style-src 'self'` works. Keep it that way (JS setting `el.style` is fine).
