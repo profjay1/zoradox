@@ -35,9 +35,16 @@ if [[ -n "$(git status --porcelain -- site/ 2>/dev/null)" ]]; then
   echo "Warning: site/ has uncommitted changes; they will be deployed too." >&2
 fi
 
-echo "Deploying site/ to ${DEPLOY_USER}@${DEPLOY_HOST}:${REMOTE_DIR}${DRY_RUN:+ (dry run)}"
+# Never print the host address.
+echo "deploying to zoradox.com${DRY_RUN:+ (dry run)}"
 
+# Filters: first match wins. Keep .well-known/ (e.g. security.txt), then drop
+# every other dotfile (.git, .env, .DS_Store, .gitkeep), node_modules and docs.
 rsync -az --delete --chmod=D755,F644 --itemize-changes "${DRY_RUN[@]}" \
+  --include='.well-known/***' \
+  --exclude='.*' \
+  --exclude='node_modules/' \
+  --exclude='*.md' \
   site/ "${DEPLOY_USER}@${DEPLOY_HOST}:${REMOTE_DIR}"
 
 echo "Done.${DRY_RUN:+ Nothing was changed (dry run).}"
